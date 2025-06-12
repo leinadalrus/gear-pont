@@ -1,10 +1,12 @@
 <script setup lang="ts">
+import { ref } from 'vue'
+
 const query = ref('')
 const setInputs = ref('')
 
 function handleSearch() {
-    if (!query) Response.redirect('/:?')
-    Response.redirect(`/:?/${query}`)
+    if (!query.value) Response.redirect('/:?')
+    Response.redirect(`/:?/${query.value}`)
 }
 </script>
 

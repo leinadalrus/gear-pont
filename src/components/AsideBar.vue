@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import Poster, { type PosterMutationType } from './Poster.vue'
+import { ref } from 'vue'
+import Poster, { type PosterMutationType } from './ThumbNail.vue'
 import SearchField from './SearchField.vue'
 
 const posterCards = ref<PosterMutationType[]>([])

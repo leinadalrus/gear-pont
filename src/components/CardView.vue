@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref } from 'vue'
 import ProductCard, { type ProductCardMutationType } from './ProductCard.vue'
 
 const productCards = ref<ProductCardMutationType[]>([])

@@ -1,12 +1,9 @@
 <script setup lang="ts">
+import { ref } from 'vue'
+
 defineProps<{
     products: ProductCardMutationType[]
 }>()
-
-defineEmits<{
-    (e: 'addProductToShoppingCart', product: ProductCardMutationType): void
-    (e: 'removeProductFromShoppingCart', product: ProductCardMutationType): void
-}>() // Implicitly calls function
 
 const emit = defineEmits([
     'addProductToShoppingCart',
@@ -35,14 +32,16 @@ export type ProductCardMutationType = ProductCardType & {
 const shoppingCartList = ref<ProductCardMutationType[]>([])
 const inShoppingCartAlready = ref(false)
 
-export function addProductToShoppingCart(product: ProductCardMutationType) {
+function addProductToShoppingCart(product: ProductCardMutationType) {
     const productAlreadyIn = shoppingCartList.value?.find(
-        (item) => item.id == product.id
+        (item: { id: number }) => item.id == product.id
     )
     if (productAlreadyIn) {
-        return shoppingCartList.value?.map((item) => {
-            item.id == product.id ? { ...item } : item
-        })
+        return shoppingCartList.value
+            ?.filter((item: { id: number }) =>
+                item.id == product.id ? { ...item } : item
+            )
+            .pop()
     }
 
     shoppingCartList.value?.push(product)
@@ -51,10 +50,10 @@ export function addProductToShoppingCart(product: ProductCardMutationType) {
     return { ...shoppingCartList }
 }
 
-export function removeProductFromShoppingCart(
-    product: ProductCardMutationType
-) {
-    shoppingCartList.value.filter((i) => i.id != product.id).pop()
+function removeProductFromShoppingCart(product: ProductCardMutationType) {
+    shoppingCartList.value
+        .filter((i: { id: number }) => i.id != product.id)
+        .pop()
     emit('removeProductFromShoppingCart')
 }
 </script>
@@ -88,6 +87,7 @@ export function removeProductFromShoppingCart(
             <span
                 class="inline-block bg-[#446a4b] rounded-full px-2 py-1 text-sm text-[#f1eae4] mr-2 mb-2"
                 v-for="tag in product.tags"
+                :key="tag"
             >
                 <i>{{ tag }}</i>
             </span>

@@ -20,6 +20,7 @@ export type TradingCardMutationType = TradingCardType & {
     <article
         class="max-w-sm max-h-md rounded-b rounded-md shadow-lg text-[#0e020c] bg-[#f1eae4]"
         v-for="card in tradingCards"
+        :key="card.id"
     >
         <section class="px-2 py-1">
             <h1
@@ -39,6 +40,7 @@ export type TradingCardMutationType = TradingCardType & {
             <span
                 class="inline-block bg-[#446a4b] rounded-full px-2 py-1 text-sm text-[#f1eae4] mr-2 mb-2"
                 v-for="tag in card.tags"
+                :key="tag"
             >
                 <i>{{ tag }}</i>
             </span>

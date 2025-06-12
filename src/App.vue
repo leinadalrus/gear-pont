@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import WindowTabs from './(components)/WindowTabs.vue'
-import AsideBar from './(components)/AsideBar.vue'
-import Dashboard from './dashboard/Dashboard.vue'
+import WindowTabs from './components/WindowTabs.vue'
+import AsideBar from './components/AsideBar.vue'
+import Dashboard from './views/dashboard/Dashboard.vue'
 </script>
 
 <template>

@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { ref } from 'vue'
+
 defineProps<{ albumArts: AlbumArtMutationType[] }>()
 
 type AlbumArtType = {
@@ -18,6 +20,7 @@ const albums = ref<AlbumArtMutationType[]>([])
     <article
         class="max-w-sm max-h-sm rounded rounded-lg shadow-lg text-[#0e020c] bg-[#f1eae4]"
         v-for="album in albums"
+        :key="album.id"
     >
         <img
             v-bind:src="album.image"
@@ -33,6 +36,7 @@ const albums = ref<AlbumArtMutationType[]>([])
             <span
                 class="inline-block bg-[#446a4b] rounded-full px-2 py-1 text-sm text-[#f1eae4] mr-2 mb-2"
                 v-for="tag in album.tags"
+                :key="tag"
             >
                 {{ tag }}
             </span>

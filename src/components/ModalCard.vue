@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import TradingCard, { type TradingCardType } from './TradingCard.vue'
+import { ref } from 'vue'
+import TradingCard, { type TradingCardMutationType } from './TradingCard.vue'
 
-const cards = ref<TradingCardType[]>()
+const cards = ref<TradingCardMutationType[]>([])
 
-const isModalActive = ref(false)
+// const isModalActive = ref(false)
 const setModalAsActive = ref(false)
 
 function handleMouseOver() {
@@ -24,20 +25,13 @@ function handleFocusLoss() {
 </script>
 <template>
     <div
-        v-on:focus="handleFocus()"
-        v-on:blur="handleFocusLoss()"
-        v-on:mouseover="handleMouseOver()"
-        v-on:mouseout="handleMouseOut()"
+        @focus="handleFocus()"
+        @blur="handleFocusLoss()"
+        @mouseover="handleMouseOver()"
+        @:mouseout="handleMouseOut()"
         v-for="i in cards"
+        :key="i.id"
     >
-        <TradingCard
-            :title="i.title"
-            :content="i.content"
-            :flavour="i.flavour"
-            :image="i.image"
-            :author="i.author"
-            :group="i.group"
-            :tags="i.tags"
-        />
+        <TradingCard :trading-cards="cards" />
     </div>
 </template>

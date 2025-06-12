@@ -21,6 +21,7 @@ export type PosterMutationType = PosterType & {
         id="poster-container"
         class="max-w-sm max-h-md rounded-b rounded-md shadow-lg text-[#0e020c] bg-[#f1eae4]"
         v-for="poster in posters"
+        :key="poster.id"
     >
         <section class="px-2 py-1">
             <h1

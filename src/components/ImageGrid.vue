@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { useStoreGallery } from '../(composables)/useStoreGallery'
+import { useStoreGallery } from '../api/composables/useStoreGallery'
 import TradingCard from './TradingCard.vue'
 import type { ProductCardMutationType } from './ProductCard.vue'
 

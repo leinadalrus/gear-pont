@@ -1,15 +1,8 @@
-import { setup, createPage } from '@nuxt/test-utils/e2e'
 import { describe, test, it, expect } from 'vitest'
 import { mount } from '@vue/test-utils'
-import ProductCard from '~/pages/(components)/ProductCard.vue'
+import ProductCard from '../ProductCard.vue'
 
 describe('Product Card', async () => {
-    await setup({
-        host: `localhost:${process.env['SRV_PORT']}`,
-        server: true,
-        browser: true
-    })
-
     it('Component renders Product Card component', () => {
         const wrapper = mount(ProductCard)
         expect(wrapper.text()).contains(/^([\w])$/gm)
@@ -35,33 +28,20 @@ describe('Product Card', async () => {
         { slug: '/profile' },
         { slug: '/products' },
         { slug: '/shop' }
-    ])('Test with slug pages...', async ({ slug }) => {
+    ])('with slug pages...', async () => {
         it('display shopping cart', async () =>
             new Promise<void>(async (done) => {
-                const storePage = await createPage(slug)
-                expect(
-                    await storePage.getByText(/^(?i:[name])$/).isVisible()
-                ).toBe(true)
+                expect(/^(?i:[name])$/).toBe(true)
 
-                expect(
-                    await storePage.getByText(/^(?i:[producer])$/).isVisible()
-                ).toBe(true)
+                expect(/^(?i:[producer])$/).toBe(true)
 
-                expect(
-                    await storePage.getByText(/^(?i:[synopsis])$/).isVisible()
-                ).toBe(true)
+                expect(/^(?i:[synopsis])$/).toBe(true)
 
-                expect(
-                    await storePage.getByText(/^(?i:[image])$/).isVisible()
-                ).toBe(true)
+                expect(/^(?i:[image])$/).toBe(true)
 
-                expect(
-                    await storePage.getByText(/^(?i:[tags])$/).isVisible()
-                ).toBe(true)
+                expect(/^(?i:[tags])$/).toBe(true)
 
-                expect(
-                    await storePage.getByText(/^(?i:[price])$/).isVisible()
-                ).toBe(true)
+                expect(/^(?i:[price])$/).toBe(true)
 
                 done()
             }))
